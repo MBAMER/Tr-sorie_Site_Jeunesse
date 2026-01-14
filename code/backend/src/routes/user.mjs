@@ -12,7 +12,7 @@ userRouter.get("/", (req, res) => {
 });
 
 userRouter.get("/:id", (req, res) => {
-    const userid = req.params.id;
+    const userid = parseInt(req.params.id);
     console.log(`[GET] /api/user/${userid} - Récupération de l'user avec l'id ${userid}`);
     const foundUser = user.find((u) => u.id === userid);
     const message = `L'user avec l'id ${userid} a bien été récupéré.`;
@@ -22,7 +22,7 @@ userRouter.get("/:id", (req, res) => {
 userRouter.post("/", (req, res) => {
     console.log(`[POST] /api/user/ - Création d'un nouvel user:`, req.body);
     const id = getUniqueId(user);
-    const createUser = { ...req.body, ... {id: id, created: new Date()}};
+    const createUser = { ...req.body, ... { id: id, created: new Date() } };
     user.push(createUser);
     const message = `L'user avec l'id ${createUser.nom} a bien été créé.`;
     console.log(`[POST] /api/user/ - User créé avec succès: id=${createUser.id}, nom=${createUser.nom}`);
@@ -30,11 +30,19 @@ userRouter.post("/", (req, res) => {
 });
 
 userRouter.delete("/:id", (req, res) => {
-    const userid = req.params.id;
+    const userid = parseInt(req.params.id);
     console.log(`[DELETE] /api/user/${userid} - Suppression de l'user avec l'id ${userid}`);
-    removeUser(userid);
-    const message = `L'user avec l'id ${user.nom} a bien été supprimé.`;
-    res.json(success(message, deleteUser));
+    const userIndex = user.findIndex((u) => u.id === userid);
+
+    if (userIndex === -1) {
+        const message = `L'user avec l'id ${userid} n'a pas été trouvé.`;
+        return res.status(404).json({ success: false, message });
+    }
+
+    const deletedUser = user[userIndex];
+    user.splice(userIndex, 1);
+    const message = `L'user avec l'id ${userid} a bien été supprimé.`;
+    res.json(success(message, deletedUser));
 });
 
 export { userRouter };
