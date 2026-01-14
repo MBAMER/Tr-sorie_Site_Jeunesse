@@ -45,4 +45,19 @@ userRouter.delete("/:id", (req, res) => {
     res.json(success(message, deletedUser));
 });
 
+userRouter.put("/:id", (req, res) => {
+    const userid = parseInt(req.params.id);
+    console.log(`[PUT] /api/user/${userid} - Mise à jour de l'user avec l'id ${userid}`);
+    const userIndex = user.findIndex((u) => u.id === userid);
+
+    if (userIndex === -1) {
+        const message = `L'user avec l'id ${userid} n'a pas été trouvé.`;
+        return res.status(404).json({ success: false, message });
+    }
+
+    const updatedUser = { ...user[userIndex], ...req.body };
+    user[userIndex] = updatedUser;
+    const message = `L'user avec l'id ${userid} a bien été mis à jour.`;
+    res.json(success(message, updatedUser));
+});
 export { userRouter };
