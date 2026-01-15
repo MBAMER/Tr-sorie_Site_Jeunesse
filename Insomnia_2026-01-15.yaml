@@ -1,0 +1,576 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1768386499477
+  modified: 1768386499477
+  description: ""
+collection:
+  - url: http://localhost:3000/api/user/
+    name: Créer des user
+    meta:
+      id: req_3f1f36041c954483a9784960f2f5a25a
+      created: 1768386522820
+      modified: 1768461148883
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522820
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "nom": "Wirth",
+                "prénom": "Kévin",
+                "mail": "kevin.wirth@gmail.com",
+                "MDP": "**********",
+                "jeunesse": "Jeunesse du Mont-sur-Lausanne"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/user/2
+    name: trouver un seul user
+    meta:
+      id: req_e8eab6c13b9d41fca415383fe3271f71
+      created: 1768386692336
+      modified: 1768461235456
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522770
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/user
+    name: get all user
+    meta:
+      id: req_cc8c555c209f4e72aa3fe75233571ef2
+      created: 1768386994895
+      modified: 1768471605796
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522595
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/user/10
+    name: supprimer un user
+    meta:
+      id: req_b780eb7f25b64173a6a299a48edac75f
+      created: 1768388935629
+      modified: 1768401603408
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522670
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/user/5
+    name: Modifié un user
+    meta:
+      id: req_6db893fe773842fd8ef489153c6b7efb
+      created: 1768404147768
+      modified: 1768461133825
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522795
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "nom": "Bmaert",
+                "prénom": "kyra",
+                "mail": "kevin.wirth@gmail.com",
+                "MDP": "**********",
+                "jeunesse": "Jeunesse du Mont-sur-Lausanne"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/evenement/10
+    name: supprimer un event
+    meta:
+      id: req_a5ca814be0b6436eb6dc67d6a6c5e56f
+      created: 1768464612730
+      modified: 1768464707560
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522620
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/evenement
+    name: get all event
+    meta:
+      id: req_d790a3df9d96424f840be6c9ffeb87d7
+      created: 1768464622744
+      modified: 1768471616487
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522495
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/evenement/2
+    name: trouver un seul event
+    meta:
+      id: req_2732c5545a1e470c946f0e3eb1f0bfc9
+      created: 1768464633350
+      modified: 1768464697277
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522745
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/evenement/5
+    name: Modifié un event
+    meta:
+      id: req_33e227cabbfb47c7863bbc69baac0fa0
+      created: 1768464644404
+      modified: 1768465188523
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522782.5
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "nom_evenement": "char",
+                "date_evenement": "2026-01-15",
+                "budget_total_entree": "1000",
+                "budget_total_sortie": "500",
+                "budget_total": "500"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/evenement/
+    name: Créer des event
+    meta:
+      id: req_5e25777b83fa4d3f9e1417b45676ab45
+      created: 1768464653800
+      modified: 1768465109547
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522807.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "nom_evenement": "tour de jeunesse",
+                "date_evenement": "2026-01-15",
+                "budget_total_entree": "1000",
+                "budget_total_sortie": "500",
+                "budget_total": "500"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/tresorie/4
+    name: supprimer une ligne du compte principale
+    meta:
+      id: req_880d7fda62f44982a2f6526442793b6d
+      created: 1768465853887
+      modified: 1768471612136
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522607.5
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/tresorie
+    name: get all ligne du compte principal
+    meta:
+      id: req_cd50c4f2c53f484a89e5963b3a3f50bc
+      created: 1768465875231
+      modified: 1768471619881
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522395
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/tresorie/2
+    name: trouver une seul ligne de compte
+    meta:
+      id: req_5cc3464418d44d89ac22264870eddd1a
+      created: 1768467616467
+      modified: 1768468082640
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522732.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/tresorie/2
+    name: Modifié une ligne du code principale
+    meta:
+      id: req_237b58a04ea64c6b8367f1f6472f11b7
+      created: 1768467638801
+      modified: 1768470116541
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522776.25
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "description": "Achat matériel",
+                "montant_Positif": 0.00,
+                "montant_Négatif": 600.00,
+                "date_": "2026-01-13",
+                "pièce_jointe": null,
+                "id_user": 2
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/tresorie/
+    name: Créer des ligne du compte principale
+    meta:
+      id: req_f00fc66f8ab54c14a2e334f914e1bc73
+      created: 1768467662347
+      modified: 1768468603982
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522801.25
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "description": "Achat matériel",
+                "montant_Positif": 500.00,
+                "montant_Négatif": 300.00,
+                "date_": "2026-01-13",
+                "pièce_jointe": null,
+                "id_user": 2
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/ligne-compte-event/4
+    name: supprimer une ligne du compte event
+    meta:
+      id: req_7b5ebf92fe87438ba496ef48336ccf66
+      created: 1768471258011
+      modified: 1768471613949
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522601.25
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/ligne-compte-event
+    name: get all ligne du compte event
+    meta:
+      id: req_0fcad459e88940b2b8e5778dab677e53
+      created: 1768471268942
+      modified: 1768471622904
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522295
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/ligne-compte-event/2
+    name: trouver une seul ligne de event
+    meta:
+      id: req_36b713a5f769406bbd237fa1f1fa5636
+      created: 1768471283827
+      modified: 1768471390350
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522726.25
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/ligne-compte-event/2
+    name: Modifié une ligne de event
+    meta:
+      id: req_20ca0e0fbc594e169bdc358db4891651
+      created: 1768471305914
+      modified: 1768471518249
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522773.125
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                 "description": "vente de boisson",
+                "montant_Positif": 400.00,
+                "montant_Negatif": 0.00
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/ligne-compte-event/
+    name: Créer des ligne de event
+    meta:
+      id: req_23e8cf29d74542ddb6e00b746c582619
+      created: 1768471315725
+      modified: 1768471503016
+      isPrivate: false
+      description: ""
+      sortKey: -1768386522798.125
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                "description": "vente de boisson",
+                "montant_Positif": 400.00,
+                "montant_Negatif": 0.00
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1768386511487
+    modified: 1768386511487
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1768386511485
+    modified: 1768386511485
+    isPrivate: false
