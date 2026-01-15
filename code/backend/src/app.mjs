@@ -23,6 +23,13 @@ app.get("/api/", (req, res) => {
 
 import { userRouter } from "./routes/user.mjs";
 app.use("/api/user", userRouter);
+
+import { evenementRouter } from "./routes/evenement.mjs";
+app.use("/api/evenement", evenementRouter);
+
+import { tresorieRouter } from "./routes/trésorie_principale.mjs";
+app.use("/api/tresorie", tresorieRouter);
+
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);
 });
