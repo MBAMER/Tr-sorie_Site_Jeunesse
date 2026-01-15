@@ -30,6 +30,9 @@ app.use("/api/evenement", evenementRouter);
 import { tresorieRouter } from "./routes/trésorie_principale.mjs";
 app.use("/api/tresorie", tresorieRouter);
 
+import { ligneCompteEventRouter } from "./routes/ligne_compte_event.mjs";
+app.use("/api/ligne-compte-event", ligneCompteEventRouter);
+
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);
 });
