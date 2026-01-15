@@ -64,11 +64,16 @@ const recalculateTotals = () => {
     });
 
     let runningTotal = 0;
-    tresorie = tresorie.map(t => {
+
+    // Mise à jour en place des objets
+    tresorie.forEach(t => {
         const montantPositif = parseFloat(t.montant_Positif) || 0;
         const montantNegatif = parseFloat(t.montant_Négatif) || 0;
         runningTotal = runningTotal + montantPositif - montantNegatif;
-        return { ...t, total: runningTotal };
+
+        t.montant_Positif = montantPositif; // S'assurer que c'est un nombre
+        t.montant_Négatif = montantNegatif;
+        t.total = runningTotal;
     });
 };
 
