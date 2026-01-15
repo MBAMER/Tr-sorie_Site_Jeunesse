@@ -1,6 +1,7 @@
 import express from "express";
-import { tresorie, getTresorie, removeTresorie, updateTresorie, getUniqueId, recalculateTotals } from "../db/mock-trésorie_principale.mjs";
+import { tresorie } from "../db/mock-trésorie_principale.mjs";
 import { success } from "../helper.mjs";
+import { getTresorie, removeTresorie, updateTresorie, getUniqueId, recalculateTotals } from "../controllers/trésorie_principale_controller.mjs";
 
 const tresorieRouter = express();
 

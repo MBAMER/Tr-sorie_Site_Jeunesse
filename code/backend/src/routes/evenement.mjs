@@ -1,6 +1,7 @@
 import express from "express";
-import { evenement, getEvenement, removeEvenement, updateEvenement, getUniqueId } from "../db/mock-evenement.mjs";
+import { evenement } from "../db/mock-evenement.mjs";
 import { success } from "../helper.mjs";
+import { getEvenement, removeEvenement, updateEvenement, getUniqueId } from "../controllers/evenement_controller.mjs";
 
 const evenementRouter = express();
 

@@ -1,6 +1,7 @@
 import express from "express";
-import { ligneCompteEvent, getLigneCompteEvent, removeLigneCompteEvent, updateLigneCompteEvent, getUniqueId, recalculateTotals } from "../db/mock-ligne_compte_event.mjs";
+import { ligneCompteEvent } from "../db/mock-ligne_compte_event.mjs";
 import { success } from "../helper.mjs";
+import { getLigneCompteEvent, removeLigneCompteEvent, updateLigneCompteEvent, getUniqueId, recalculateTotals } from "../controllers/ligne_compte_event_controller.mjs";
 
 const ligneCompteEventRouter = express();
 
