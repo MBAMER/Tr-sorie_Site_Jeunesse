@@ -1,5 +1,5 @@
 import { entries } from "../db/mock-entries.mjs";
-import { have } from "../db/mock-have.mjs"; // Indispensable
+
 
 const getEntry = (id) => entries.find((e) => e.id === id);
 
@@ -7,8 +7,8 @@ const removeEntry = (id) => {
     const index = entries.findIndex((e) => e.id === id);
     if (index !== -1) {
         entries.splice(index, 1);
-        const haveIndex = have.findIndex(h => h.entries_id === id);
-        if (haveIndex !== -1) have.splice(haveIndex, 1);
+        const haveIndex = entries.findIndex(h => h.entries_id === id);
+        if (haveIndex !== -1) entries.splice(haveIndex, 1);
     }
 };
 

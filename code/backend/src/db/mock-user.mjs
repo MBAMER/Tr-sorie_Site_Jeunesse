@@ -1,21 +1,20 @@
 let user = [
     {
-        id_user: 0,
-        nom: "Bamert",
-        prénom: "Mathieu",
-        mail: "mathieu.bamert@gmail.com",
-        MDP: "**********",
-        Jeunesse: "Jeunesse de Cugy" // Matched capitalization from schema
+        id: 1,
+        last_name: "Bamert",
+        first_name: "Mathieu",
+        email: "mathieu.bamert@gmail.com",
+        password: "**********",
+        youth_club_id: 10 // Référence à l'ID d'un youthclub
     },
     {
-        id_user: 1,
-        nom: "Wirth",
-        prénom: "Kévin",
-        mail: "kevin.wirth@gmail.com",
-        MDP: "**********",
-        Jeunesse: "Jeunesse du Mont-sur-Lausanne"
+        id: 2,
+        last_name: "Wirth",
+        first_name: "Kévin",
+        email: "kevin.wirth@gmail.com",
+        password: "**********",
+        youth_club_id: 11
     }
-]
-
+];
 
 export { user };

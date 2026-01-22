@@ -25,11 +25,11 @@ evenementRouter.get("/:id", (req, res) => {
 
 // POST - Création corrigée
 evenementRouter.post("/", (req, res) => {
-    const { nom, date_, users_id } = req.body; // On extrait les champs du body
+    const { last_name, date_, users_id } = req.body; // On extrait les champs du body
 
     const newEvent = {
         id: getUniqueId(),
-        nom: nom, // Vérifie bien que c'est 'nom' ici
+        last_name: last_name, // Vérifie bien que c'est 'last_name' ici
         date_: date_ || new Date().toISOString().split('T')[0],
         users_id: users_id ? parseInt(users_id) : null
     };

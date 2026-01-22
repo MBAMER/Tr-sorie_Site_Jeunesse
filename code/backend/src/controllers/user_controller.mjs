@@ -1,32 +1,37 @@
-import { user } from "../db/mock-user.mjs";
+import { User } from '../models/user_model.mjs';
 
-const getUser = (id) => {
-    return user.find((u) => u.id_user === id);
+// Récupérer tous les users
+const getAllUsers = async () => {
+    return await User.findAll();
 };
 
-const removeUser = (id) => {
-    // Note: reassigning exported 'user' binding won't work if imported elsewhere as live binding
-    // But since it's an array, we can mutate it or use a getter/setter approach if it was a class
-    // In this simple mock, we often rely on 'let' export which is mutable but tricky across modules.
-    // However, the original code used reassignment: user = user.filter...
-    // To make it work reliably with ES modules we should ideally preserve the array reference or use a specific function in mock (which we removed).
-    // Given the pattern established in other controllers (like treasorie) let's try to stick to what was there but fix the ID.
-    // Actually, treating 'user' as mutable export:
-    const index = user.findIndex(u => u.id_user === id);
-    if (index !== -1) user.splice(index, 1);
+// Récupérer par ID
+const getUser = async (id) => {
+    return await User.findByPk(id);
 };
 
-const updateUser = (id, updatedUser) => {
-    const index = user.findIndex(u => u.id_user === id);
-    if (index !== -1) user[index] = updatedUser;
+// Créer un user
+const createUser = async (userData) => {
+    return await User.create(userData);
 };
 
-const getUniqueId = () => {
-    if (user.length === 0) return 0;
-    const userIds = user.map((u) => u.id_user);
-    const maxId = userIds.reduce((a, b) => Math.max(a, b), -1);
-    const uniqueId = maxId + 1;
-    return uniqueId;
+// Supprimer un user
+const removeUser = async (id) => {
+    const user = await User.findByPk(id);
+    if (user) {
+        await user.destroy();
+        return user;
+    }
+    return null;
 };
 
-export { getUser, removeUser, updateUser, getUniqueId };
+// Mettre à jour un user
+const updateUser = async (id, updatedData) => {
+    const user = await User.findByPk(id);
+    if (user) {
+        return await user.update(updatedData);
+    }
+    return null;
+};
+
+export { getAllUsers, getUser, createUser, removeUser, updateUser };

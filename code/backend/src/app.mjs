@@ -1,4 +1,5 @@
 import express from "express";
+
 const app = express();
 const port = 3000;
 
@@ -21,7 +22,7 @@ app.get("/api/", (req, res) => {
     res.redirect(`http://localhost:${port}/`);
 });
 
-import { userRouter } from "./routes/user.mjs";
+import { userRouter } from "./routes/user_routes.mjs";
 app.use("/api/user", userRouter);
 
 import { evenementRouter } from "./routes/evenement.mjs";
@@ -30,8 +31,7 @@ app.use("/api/evenement", evenementRouter);
 import { entriesRouter } from "./routes/entries_routes.mjs";
 app.use("/api/tresorie", entriesRouter);
 
-import { ligneCompteEventRouter } from "./routes/ligne_compte_event.mjs";
-app.use("/api/ligne-compte-event", ligneCompteEventRouter);
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);

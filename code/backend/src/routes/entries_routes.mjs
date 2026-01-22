@@ -1,60 +1,64 @@
-import express from "express";
-import { entries } from "../db/mock-entries.mjs";
-import { success } from "../helper.mjs";
-import { getEntry, removeEntry, updateEntry, getUniqueId } from "../controllers/entries_controller.mjs";
-
+import express from 'express';
+import { getEntry, removeEntry, updateEntry, getUniqueId } from '../controllers/entries_controller.mjs';
+import { entries } from '../db/mock-entries.mjs'; // Import direct pour le GET all
 const entriesRouter = express.Router();
 
-// POST - Créer une entrée et la lier à un événement
-entriesRouter.post("/", (req, res) => {
-    const newId = getUniqueId();
-    const { description, montant, date_, events_id, users_id } = req.body;
+// 1. Récupérer toutes les entrées
+entriesRouter.get('/', (req, res) => {
+    res.json(entries);
+});
 
-    // 1. Création dans la table 'entries' (selon schéma image 1)
+// 2. Récupérer une entrée par son ID
+entriesRouter.get('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const entry = getEntry(id);
+
+    if (entry) {
+        res.json(entry);
+    } else {
+        res.status(404).json({ message: "Entrée non trouvée" });
+    }
+});
+
+// 3. Créer une nouvelle entrée
+entriesRouter.post('/', (req, res) => {
+    const id = getUniqueId();
     const newEntry = {
-        id: newId,
-        description: description,        // VARCHAR(200)
-        montant: parseFloat(montant),     // DECIMAL(19,4)
-        date_: date_ || new Date().toISOString().split('T')[0], // DATE
-        users_id: parseInt(users_id)      // INT (FK vers users)
+        id: id,
+        description: req.body.description,
+        montant: parseFloat(req.body.montant),
+        entry_date: req.body.entry_date || new Date().toISOString().split('T')[0],
+        users_id: parseInt(req.body.users_id)
     };
 
     entries.push(newEntry);
-
-    // 2. Création de la liaison dans la table 'have' (selon schéma image 1)
-    if (events_id) {
-        have.push({
-            entries_id: newId,
-            events_id: parseInt(events_id)
-        });
-    }
-
-    res.status(201).json(success("Entrée comptable créée et liée à l'événement.", newEntry));
+    res.status(201).json({ message: "Entrée créée", data: newEntry });
 });
 
-// GET - Récupérer les entrées d'un événement spécifique
-entriesRouter.get("/event/:eventId", (req, res) => {
-    const eventId = parseInt(req.params.eventId);
-    
-    // On cherche les IDs des entrées liées à cet événement dans 'have'
-    const entryIds = have
-        .filter(h => h.events_id === eventId)
-        .map(h => h.entries_id);
-
-    // On récupère les détails de ces entrées
-    const result = entries.filter(e => entryIds.includes(e.id));
-
-    res.json(success(`Entrées pour l'événement ${eventId} récupérées.`, result));
-});
-
-// DELETE
-entriesRouter.delete("/:id", (req, res) => {
+// 4. Modifier une entrée (Update)
+entriesRouter.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const found = getEntry(id);
-    if (!found) return res.status(404).json({ message: "Introuvable" });
+    const entry = getEntry(id);
 
-    removeEntry(id);
-    res.json(success("Entrée supprimée.", found));
+    if (entry) {
+        updateEntry(id, req.body);
+        res.json({ message: "Entrée mise à jour", data: getEntry(id) });
+    } else {
+        res.status(404).json({ message: "Entrée inexistante" });
+    }
+});
+
+// 5. Supprimer une entrée
+entriesRouter.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const entry = getEntry(id);
+
+    if (entry) {
+        removeEntry(id);
+        res.json({ message: `L'entrée ${id} a été supprimée` });
+    } else {
+        res.status(404).json({ message: "Impossible de supprimer : ID introuvable" });
+    }
 });
 
 export { entriesRouter };

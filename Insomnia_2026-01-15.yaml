@@ -21,8 +21,8 @@ collection:
       mimeType: application/json
       text: |-
         {
-                "nom": "Wirth",
-                "prénom": "Kévin",
+                "last_name": "Wirth",
+                "first_name": "Kévin",
                 "mail": "kevin.wirth@gmail.com",
                 "MDP": "**********",
                 "jeunesse": "Jeunesse du Mont-sur-Lausanne"
@@ -125,8 +125,8 @@ collection:
       mimeType: application/json
       text: |-
         {
-                "nom": "Bmaert",
-                "prénom": "kyra",
+                "last_name": "Bmaert",
+                "first_name": "kyra",
                 "mail": "kevin.wirth@gmail.com",
                 "MDP": "**********",
                 "jeunesse": "Jeunesse du Mont-sur-Lausanne"
@@ -229,7 +229,7 @@ collection:
       mimeType: application/json
       text: |-
         {
-                "nom_evenement": "char",
+                "last_name_evenement": "char",
                 "date_evenement": "2026-01-15",
                 "budget_total_entree": "1000",
                 "budget_total_sortie": "500",
@@ -264,7 +264,7 @@ collection:
       mimeType: application/json
       text: |-
         {
-                "nom_evenement": "tour de jeunesse",
+                "last_name_evenement": "tour de jeunesse",
                 "date_evenement": "2026-01-15",
                 "budget_total_entree": "1000",
                 "budget_total_sortie": "500",
