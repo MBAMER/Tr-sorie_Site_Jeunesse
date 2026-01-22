@@ -1,25 +1,30 @@
 import { evenement } from "../db/mock-evenement.mjs";
 
-const getEvenement = (evenementid) => {
-    return evenement.find((evenement) => evenement.id == evenementid);
+// Trouver un événement par son ID
+const getEvenement = (id) => {
+    return evenement.find((e) => e.id === id);
 };
 
-const removeEvenement = (evenementid) => {
-    evenement = evenement.filter((evenement) => evenement.id != evenementid);
+// Supprimer un événement
+const removeEvenement = (id) => {
+    const index = evenement.findIndex(e => e.id === id);
+    if (index !== -1) evenement.splice(index, 1);
 };
 
-const updateEvenement = (evenementid, updatedEvenement) => {
-    evenement = evenement.map((evenement) =>
-        evenement.id == evenementid ? updatedEvenement : evenement
-    );
+// Mettre à jour un événement
+const updateEvenement = (id, updatedData) => {
+    const index = evenement.findIndex(e => e.id === id);
+    if (index !== -1) {
+        evenement[index] = { ...evenement[index], ...updatedData };
+    }
 };
 
+// Générer un nouvel ID (Simule le AUTO_INCREMENT)
 const getUniqueId = () => {
-    const evenementsIds = evenement.map((evenement) => evenement.id);
-    const maxId = evenementsIds.reduce((a, b) => Math.max(a, b));
-    const uniqueId = maxId + 1;
-    return uniqueId;
+    if (evenement.length === 0) return 1;
+    const ids = evenement.map((e) => e.id);
+    const maxId = Math.max(...ids);
+    return maxId + 1;
 };
-
 
 export { getEvenement, removeEvenement, updateEvenement, getUniqueId };

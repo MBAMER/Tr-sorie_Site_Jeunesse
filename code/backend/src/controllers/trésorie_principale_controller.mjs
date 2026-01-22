@@ -5,13 +5,17 @@ const getTresorie = (tresorieId) => {
 };
 
 const removeTresorie = (tresorieId) => {
-    tresorie = tresorie.filter((t) => t.id_tresorie_principale !== tresorieId);
+    const index = tresorie.findIndex((t) => t.id_tresorie_principale === tresorieId);
+    if (index !== -1) {
+        tresorie.splice(index, 1);
+    }
 };
 
 const updateTresorie = (tresorieId, updatedTresorie) => {
-    tresorie = tresorie.map((t) =>
-        t.id_tresorie_principale === tresorieId ? updatedTresorie : t
-    );
+    const index = tresorie.findIndex((t) => t.id_tresorie_principale === tresorieId);
+    if (index !== -1) {
+        tresorie[index] = updatedTresorie;
+    }
 };
 
 const getUniqueId = () => {

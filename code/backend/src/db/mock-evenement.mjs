@@ -1,21 +1,14 @@
-let evenement = [
-    {
-        id: 0,
-        nom_evenement: "tour de jeunesse",
-        date_evenement: "2026-01-15",
-        budget_total_entree: "1000",
-        budget_total_sortie: "500",
-        budget_total: "500"
-    },
+export let evenement = [
     {
         id: 1,
-        nom_evenement: "char",
-        date_evenement: "2026-01-16",
-        budget_total_entree: "1500",
-        budget_total_sortie: "1000",
-        budget_total: "500"
+        nom: "Tournoi de Foot",
+        date_: "2026-06-20",
+        users_id: 1
+    },
+    {
+        id: 2,
+        nom: "Sortie Cinéma",
+        date_: "2026-07-12",
+        users_id: 2
     }
-]
-
-
-export { evenement };
+];

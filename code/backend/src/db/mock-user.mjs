@@ -1,19 +1,19 @@
 let user = [
     {
-        id: 0,
+        id_user: 0,
         nom: "Bamert",
         prénom: "Mathieu",
         mail: "mathieu.bamert@gmail.com",
         MDP: "**********",
-        jeunesse: "Jeunesse de Cugy"
+        Jeunesse: "Jeunesse de Cugy" // Matched capitalization from schema
     },
     {
-        id: 1,
+        id_user: 1,
         nom: "Wirth",
         prénom: "Kévin",
         mail: "kevin.wirth@gmail.com",
         MDP: "**********",
-        jeunesse: "Jeunesse du Mont-sur-Lausanne"
+        Jeunesse: "Jeunesse du Mont-sur-Lausanne"
     }
 ]
 

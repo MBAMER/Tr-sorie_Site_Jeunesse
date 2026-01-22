@@ -5,14 +5,18 @@
   "description": "Appliation pour les trésoriers des jeunesse",
   "main": "src/app.mjs",
   "scripts": {
-    "start": "nodemon src/app.mjs"
+    "start": "nodemon src/app.mjs",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "Mathieu",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "jest": "^30.2.0",
     "nodemon": "^3.0.2"
   }
 }

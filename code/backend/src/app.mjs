@@ -27,8 +27,8 @@ app.use("/api/user", userRouter);
 import { evenementRouter } from "./routes/evenement.mjs";
 app.use("/api/evenement", evenementRouter);
 
-import { tresorieRouter } from "./routes/trésorie_principale.mjs";
-app.use("/api/tresorie", tresorieRouter);
+import { entriesRouter } from "./routes/entries_routes.mjs";
+app.use("/api/tresorie", entriesRouter);
 
 import { ligneCompteEventRouter } from "./routes/ligne_compte_event.mjs";
 app.use("/api/ligne-compte-event", ligneCompteEventRouter);

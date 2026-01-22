@@ -28,10 +28,10 @@ userRouter.get("/:id", (req, res) => {
 userRouter.post("/", (req, res) => {
     console.log(`[POST] /api/user/ - Création d'un nouvel user:`, req.body);
     const id = getUniqueId();
-    const createUser = { ...req.body, ... { id: id, created: new Date() } };
+    const createUser = { ...req.body, ... { id_user: id, created: new Date() } };
     user.push(createUser);
     const message = `L'user avec l'id ${createUser.nom} a bien été créé.`;
-    console.log(`[POST] /api/user/ - User créé avec succès: id=${createUser.id}, nom=${createUser.nom}`);
+    console.log(`[POST] /api/user/ - User créé avec succès: id=${createUser.id_user}, nom=${createUser.nom}`);
     res.json(success(message, createUser));
 });
 
@@ -60,7 +60,7 @@ userRouter.put("/:id", (req, res) => {
         return res.status(404).json({ success: false, message });
     }
 
-    const updatedUserData = { ...foundUser, ...req.body, id: foundUser.id, created: foundUser.created };
+    const updatedUserData = { ...foundUser, ...req.body, id_user: foundUser.id_user, created: foundUser.created };
     updateUser(userid, updatedUserData);
     const message = `L'user avec l'id ${userid} a bien été mis à jour.`;
     res.json(success(message, updatedUserData));

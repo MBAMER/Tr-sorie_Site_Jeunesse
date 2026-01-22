@@ -1,83 +1,71 @@
 import express from "express";
 import { evenement } from "../db/mock-evenement.mjs";
 import { success } from "../helper.mjs";
-import { getEvenement, removeEvenement, updateEvenement, getUniqueId } from "../controllers/evenement_controller.mjs";
+import { 
+    getEvenement, 
+    removeEvenement, 
+    updateEvenement, 
+    getUniqueId 
+} from "../controllers/evenement_controller.mjs";
 
-const evenementRouter = express();
+const evenementRouter = express.Router();
 
-// GET - Récupérer tous les événements
+// GET - Liste de tous les événements
 evenementRouter.get("/", (req, res) => {
-    console.log(`[GET] /api/evenement/ - Récupération de la liste des événements`);
-    const message = "La liste des événements a bien été récupérée.";
-    res.json(success(message, evenement));
+    res.json(success("Liste des événements récupérée.", evenement));
 });
 
-// GET - Récupérer un événement par ID
+// GET - Un seul événement par ID
 evenementRouter.get("/:id", (req, res) => {
-    const evenementid = parseInt(req.params.id);
-    console.log(`[GET] /api/evenement/${evenementid} - Récupération de l'événement avec l'id ${evenementid}`);
-    const foundEvenement = getEvenement(evenementid);
-
-    if (!foundEvenement) {
-        const message = `L'événement avec l'id ${evenementid} n'a pas été trouvé.`;
-        return res.status(404).json({ success: false, message });
-    }
-
-    const message = `L'événement avec l'id ${evenementid} a bien été récupéré.`;
-    res.json(success(message, foundEvenement));
+    const id = parseInt(req.params.id);
+    const found = getEvenement(id);
+    if (!found) return res.status(404).json({ success: false, message: "Événement introuvable." });
+    res.json(success("Événement trouvé.", found));
 });
 
-// POST - Créer un nouvel événement
+// POST - Création corrigée
 evenementRouter.post("/", (req, res) => {
-    console.log(`[POST] /api/evenement/ - Création d'un nouvel événement:`, req.body);
-    const id = getUniqueId();
-    const createEvenement = {
-        id: id,
-        ...req.body,
-        created: new Date()
+    const { nom, date_, users_id } = req.body; // On extrait les champs du body
+
+    const newEvent = {
+        id: getUniqueId(),
+        nom: nom, // Vérifie bien que c'est 'nom' ici
+        date_: date_ || new Date().toISOString().split('T')[0],
+        users_id: users_id ? parseInt(users_id) : null
     };
-    evenement.push(createEvenement);
-    const message = `L'événement "${createEvenement.nom_evenement}" a bien été créé.`;
-    console.log(`[POST] /api/evenement/ - Événement créé avec succès: id=${createEvenement.id}, nom=${createEvenement.nom_evenement}`);
-    res.json(success(message, createEvenement));
+
+    evenement.push(newEvent);
+    
+    // On renvoie l'objet complet pour vérifier dans Insomnia
+    res.json(success("Événement créé avec succès.", newEvent));
 });
 
-// PUT - Modifier un événement existant
+// PUT - Modification
 evenementRouter.put("/:id", (req, res) => {
-    const evenementid = parseInt(req.params.id);
-    console.log(`[PUT] /api/evenement/${evenementid} - Mise à jour de l'événement avec l'id ${evenementid}`);
-    const foundEvenement = getEvenement(evenementid);
+    const id = parseInt(req.params.id);
+    const found = getEvenement(id);
+    
+    if (!found) return res.status(404).json({ success: false, message: "Événement introuvable." });
 
-    if (!foundEvenement) {
-        const message = `L'événement avec l'id ${evenementid} n'a pas été trouvé.`;
-        return res.status(404).json({ success: false, message });
-    }
-
-    const updatedEvenement = {
-        ...foundEvenement,
-        ...req.body,
-        id: foundEvenement.id,
-        created: foundEvenement.created
+    const updated = { 
+        ...found, 
+        ...req.body, 
+        id: found.id // Protection : l'ID ne change jamais
     };
-    updateEvenement(evenementid, updatedEvenement);
-    const message = `L'événement avec l'id ${evenementid} a bien été mis à jour.`;
-    res.json(success(message, updatedEvenement));
+
+    updateEvenement(id, updated);
+    res.json(success("Événement mis à jour.", updated));
 });
 
-// DELETE - Supprimer un événement
+// DELETE - Suppression
 evenementRouter.delete("/:id", (req, res) => {
-    const evenementid = parseInt(req.params.id);
-    console.log(`[DELETE] /api/evenement/${evenementid} - Suppression de l'événement avec l'id ${evenementid}`);
-    const foundEvenement = getEvenement(evenementid);
+    const id = parseInt(req.params.id);
+    const found = getEvenement(id);
+    
+    if (!found) return res.status(404).json({ success: false, message: "Événement introuvable." });
 
-    if (!foundEvenement) {
-        const message = `L'événement avec l'id ${evenementid} n'a pas été trouvé.`;
-        return res.status(404).json({ success: false, message });
-    }
-
-    removeEvenement(evenementid);
-    const message = `L'événement "${foundEvenement.nom_evenement}" a bien été supprimé.`;
-    res.json(success(message, foundEvenement));
+    removeEvenement(id);
+    res.json(success("Événement supprimé.", found));
 });
 
 export { evenementRouter };
