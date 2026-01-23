@@ -5,7 +5,8 @@ const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    allowNull: false
   },
   first_name: {
     type: DataTypes.STRING(50),
@@ -29,13 +30,15 @@ const User = sequelize.define('User', {
     type: DataTypes.INTEGER,
     allowNull: true,
     references: {
-      model: 'youth_clubs', // last_name de la table liée
+      model: 'youth_clubs',
       key: 'id'
     }
   }
 }, {
-  timestamps: false, // Ton schéma ne montre pas de colonnes created_at/updated_at
-  tableName: 'users'
+  timestamps: false,
+  tableName: 'users',
+  charset: 'utf8mb4',
+  collate: 'utf8mb4_unicode_ci'
 });
 
 export { User };

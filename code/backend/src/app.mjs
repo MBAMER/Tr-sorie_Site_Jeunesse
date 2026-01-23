@@ -1,5 +1,4 @@
 import express from "express";
-
 const app = express();
 const port = 3000;
 
@@ -22,16 +21,14 @@ app.get("/api/", (req, res) => {
     res.redirect(`http://localhost:${port}/`);
 });
 
+// Initialiser la base de données
+import { initDb } from "./db/sequelize.mjs";
+initDb().catch((err) => {
+    console.error("Erreur lors de l'initialisation de la BD:", err);
+});
+
 import { userRouter } from "./routes/user_routes.mjs";
 app.use("/api/user", userRouter);
-
-import { evenementRouter } from "./routes/evenement.mjs";
-app.use("/api/evenement", evenementRouter);
-
-import { entriesRouter } from "./routes/entries_routes.mjs";
-app.use("/api/tresorie", entriesRouter);
-
-
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);

@@ -10,13 +10,13 @@ services:
     container_name: db
     hostname: db
     environment:
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: db_user
       MYSQL_PASSWORD: db_user_pass
       MYSQL_DATABASE: db_tresorie
     restart: always
     volumes:
       - dbdata:/var/lib/mysql
-      - ./database:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -56,7 +56,7 @@ services:
       DB_HOST: db
       DB_USER: db_user
       DB_PASSWORD: db_user_pass
-      DB_NAME: db_user
+      DB_NAME: db_tresorie
     volumes:
       - ./code/backend/src:/app/src
     depends_on:

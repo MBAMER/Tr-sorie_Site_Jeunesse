@@ -1,7 +1,6 @@
 import express from "express";
-import * as userCtrl from "../controllers/user_controller.mjs";
 import { success } from "../helper.mjs";
-import { User } from "../models/user_model.mjs";
+
 
 import { getAllUsers, getUser, createUser, removeUser, updateUser } from "../controllers/user_controller.mjs";
 const userRouter = express.Router();
@@ -27,8 +26,10 @@ userRouter.get("/:id", async (req, res) => {
 
 userRouter.post("/", async (req, res) => {
     try {
-        // req.body doit contenir: first_name, last_name, email, MDP, youthclubs_id
-        const newUser = await createUser(req.body);
+        // req.body doit contenir: first_name, last_name, email, password, youth_club_id
+        // On exclut l'ID pour que l'auto-increment fonctionne
+        const { id, ...userDataWithoutId } = req.body;
+        const newUser = await createUser(userDataWithoutId);
         res.json(success("Utilisateur créé avec succès.", newUser));
     } catch (error) {
         res.status(400).json({ message: "Données invalides", error: error.message });

@@ -29,7 +29,7 @@ evenementRouter.post("/", (req, res) => {
 
     const newEvent = {
         id: getUniqueId(),
-        last_name: last_name, // Vérifie bien que c'est 'last_name' ici
+        name: name, // Vérifie bien que c'est 'last_name' ici
         date_: date_ || new Date().toISOString().split('T')[0],
         users_id: users_id ? parseInt(users_id) : null
     };
