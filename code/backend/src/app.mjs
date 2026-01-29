@@ -7,12 +7,11 @@ const port = 3000;
 // Middleware pour parser JSON
 app.use(express.json());
 
-// Middleware global de logging
-app.use((req, res, next) => {
-    const timestamp = new Date().toISOString();
-    console.log(`[${timestamp}] ${req.method} ${req.path}`);
-    next();
-});
+// Importer les middlewares
+import { requestLogger, errorHandler, notFoundHandler } from "./middlewares.mjs";
+
+// Middleware de logging avancé
+app.use(requestLogger);
 
 app.get("/", (req, res) => {
     console.log(`[GET] / - Accueil`);
@@ -27,6 +26,7 @@ app.get("/api/", (req, res) => {
 import { initDb } from "./db/sequelize.mjs";
 initDb().catch((err) => {
     console.error("Erreur lors de l'initialisation de la BD:", err);
+
 });
 
 import { userRouter } from "./routes/user_routes.mjs";
@@ -37,6 +37,14 @@ app.use("/api/evenement", evenementRouter);
 
 import { entriesRouter } from "./routes/entries_routes.mjs";
 app.use("/api/entries", entriesRouter);
+
+// Middleware de gestion des routes non trouvées (404)
+// Doit être après toutes les routes définies
+app.use(notFoundHandler);
+
+// Middleware de gestion d'erreurs global
+// Doit être en dernier
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);

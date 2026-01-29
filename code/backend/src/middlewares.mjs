@@ -1,21 +1,16 @@
-import jwt from 'jsonwebtoken';
+/**
+ * Fichier de compatibilité : réexporte les middlewares depuis la nouvelle structure
+ * Ce fichier maintient la compatibilité avec les imports existants
+ */
 
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (token == null) return res.sendStatus(401);
-
-    // TODO: Utiliser une variable d'environnement pour le secret
-    const secret = process.env.JWT_SECRET || 'changeme';
-
-    jwt.verify(token, secret, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        // On définit req.sub pour compatibilité avec le user_controller
-        req.sub = user.id || user.sub;
-        next();
-    });
-};
-
-export { authenticateToken };
+export { authenticateToken, optionalAuth } from './middlewares/auth.mjs';
+export { errorHandler, notFoundHandler } from './middlewares/errorHandler.mjs';
+export { requestLogger } from './middlewares/logger.mjs';
+export { asyncHandler } from './middlewares/asyncHandler.mjs';
+export {
+    validateUserCreation,
+    validateUserUpdate,
+    validateId,
+    validateEntry,
+    validateEvent
+} from './middlewares/validation.mjs';
