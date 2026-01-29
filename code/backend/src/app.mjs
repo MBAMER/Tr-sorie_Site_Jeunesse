@@ -1,5 +1,7 @@
 import express from "express";
+import * as models from "./models/index.mjs";
 const app = express();
+app.locals.models = models;
 const port = 3000;
 
 // Middleware pour parser JSON
@@ -29,6 +31,12 @@ initDb().catch((err) => {
 
 import { userRouter } from "./routes/user_routes.mjs";
 app.use("/api/user", userRouter);
+
+import { evenementRouter } from "./routes/evenement.mjs";
+app.use("/api/evenement", evenementRouter);
+
+import { entriesRouter } from "./routes/entries_routes.mjs";
+app.use("/api/entries", entriesRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port} - VERSION_FIXED_DELETE`);

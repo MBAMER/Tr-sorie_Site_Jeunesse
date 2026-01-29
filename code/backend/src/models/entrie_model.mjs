@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Ton instance de connexion
+import { sequelize } from '../db/sequelize.mjs';
+import { DataTypes } from 'sequelize';
 
 const Entry = sequelize.define('Entry', {
   id: {
@@ -32,4 +32,4 @@ const Entry = sequelize.define('Entry', {
   timestamps: false // À retirer si tu veux createdAt/updatedAt
 });
 
-module.exports = Entry;
+export { Entry };

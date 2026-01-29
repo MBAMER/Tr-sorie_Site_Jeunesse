@@ -18,8 +18,7 @@ const User = sequelize.define('User', {
   email: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true,
-    validate: { isEmail: true }
+    unique: true
   },
   password: {
     type: DataTypes.STRING(255),
@@ -27,11 +26,7 @@ const User = sequelize.define('User', {
   },
   youth_club_id: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: 'youth_clubs', // last_name de la table liée
-      key: 'id'
-    }
+    allowNull: true
   }
 }, {
   timestamps: false, // Ton schéma ne montre pas de colonnes created_at/updated_at
